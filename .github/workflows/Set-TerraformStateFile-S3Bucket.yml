@@ -1,0 +1,27 @@
+on:
+  schedule:
+    - cron:  '32 02 4 5 *'
+
+name: Create S3 Bucket
+jobs:      
+  Create_S3_Bucket:
+    name: tfstate
+    runs-on: ubuntu-latest
+    steps:
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.REGION }}
+
+    - name: Create S3 bucket for tfstate file
+      env:
+        bucket_name: ${{ secrets.bucket_name }}
+        aws-region: ${{ secrets.REGION }}
+      run: |
+        aws s3api create-bucket --bucket ${env:bucket_name} --region "${env:aws-region}" --create-bucket-configuration LocationConstraint="${env:aws-region}"
+        aws s3api put-public-access-block --bucket ${env:bucket_name} --public-access-block-configuration "BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true"
+        aws s3api put-bucket-versioning --bucket ${env:bucket_name} --versioning-configuration Status=Enabled
+        aws s3api put-bucket-tagging --bucket ${env:bucket_name} --tagging 'TagSet=[{Key=Project,Value=plygenom}]'
+      shell: pwsh
