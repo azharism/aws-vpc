@@ -1,7 +1,9 @@
-on:
-  schedule:
-    - cron:  '30 23 4 5 *'
-name: Terraform execution
+# on:
+#   schedule:
+#     - cron:  '30 00 5 5 *'
+on: [push, pull_request]
+      
+name: Terraform Apply
 
 jobs:
         
@@ -24,3 +26,8 @@ jobs:
       run: |
         terraform init -backend-config="./tfvars/terraform_state.tfvars"
         terraform plan -var-file="./tfvars/terraform.tfvars"
+        
+    - name: Terraform apply
+      shell: pwsh
+      run: |
+        terraform apply -auto-approve -var-file="./tfvars/terraform.tfvars"    
