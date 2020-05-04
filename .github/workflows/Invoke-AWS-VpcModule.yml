@@ -1,7 +1,10 @@
 # on:
 #   schedule:
 #     - cron:  '30 00 5 5 *'
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
       
 name: Terraform Apply
 
