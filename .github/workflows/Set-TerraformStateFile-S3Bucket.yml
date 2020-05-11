@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron:  '28 05 11 5 *'
+    - cron:  '34 05 11 5 *'
 
 name: Create S3 Bucket
 jobs:      
