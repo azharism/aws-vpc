@@ -33,4 +33,4 @@ jobs:
     - name: Terraform apply
       shell: pwsh
       run: |
-        terraform apply -auto-approve -var-file="./tfvars/terraform.tfvars"    
+        terraform destroy -auto-approve -var-file="./tfvars/terraform.tfvars"    
