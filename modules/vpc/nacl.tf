@@ -10,7 +10,7 @@ resource "aws_default_network_acl" "plygenom-default-nacl" {
     protocol   = -1
     rule_no    = 100
     action     = "allow"
-    cidr_block = aws_vpc.plygenom.cidr_block
+    cidr_block = "0.0.0.0/0"
     from_port  = 0
     to_port    = 0
   }

@@ -1,11 +1,11 @@
-# # on:
-# #   schedule:
-# #     - cron:  '15 12 14 7 *'
 # on:
-#   push:
-#     branches:
-#       - master
-      
+#   schedule:
+#     - cron:  '15 12 14 7 *'
+on:
+  push:
+    branches:
+      - master
+     
 name: Terraform Apply
 
 jobs:
@@ -33,4 +33,4 @@ jobs:
     - name: Terraform apply
       shell: pwsh
       run: |
-        terraform destroy -auto-approve -var-file="./tfvars/terraform.tfvars"    
+        terraform apply -auto-approve -var-file="./tfvars/terraform.tfvars"    
