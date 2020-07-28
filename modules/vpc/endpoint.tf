@@ -10,7 +10,7 @@ resource "aws_vpc_endpoint" "s3" {
 # Private EndPoint Interface
 resource "aws_vpc_endpoint" "secretsmanager" {
   vpc_id              = aws_vpc.plygenom.id
-  subnet_ids          = aws_subnet.dba_endpoint.*.id
+  subnet_ids          = aws_subnet.plygenom_endpoint.*.id
   service_name        = "com.amazonaws.ap-southeast-2.secretsmanager"
   vpc_endpoint_type   = "Interface"
   security_group_ids  = [aws_security_group.endpoint_access.id]
@@ -21,7 +21,7 @@ resource "aws_vpc_endpoint" "secretsmanager" {
 # Private EndPoint Interface for ECR - Need two private endpoints one for api and dkr
 resource "aws_vpc_endpoint" "ecr_api" {
   vpc_id              = aws_vpc.plygenom.id
-  subnet_ids          = aws_subnet.dba_endpoint.*.id
+  subnet_ids          = aws_subnet.plygenom_endpoint.*.id
   service_name        = "com.amazonaws.ap-southeast-2.ecr.api"
   vpc_endpoint_type   = "Interface"
   security_group_ids  = [aws_security_group.endpoint_access.id]
@@ -31,7 +31,7 @@ resource "aws_vpc_endpoint" "ecr_api" {
 
 resource "aws_vpc_endpoint" "ecr_dkr" {
   vpc_id              = aws_vpc.plygenom.id
-  subnet_ids          = aws_subnet.dba_endpoint.*.id
+  subnet_ids          = aws_subnet.plygenom_endpoint.*.id
   service_name        = "com.amazonaws.ap-southeast-2.ecr.dkr"
   vpc_endpoint_type   = "Interface"
   security_group_ids  = [aws_security_group.endpoint_access.id]
@@ -43,7 +43,7 @@ resource "aws_vpc_endpoint" "ecr_dkr" {
 
 resource "aws_vpc_endpoint" "ecs_agent" {
   vpc_id              = aws_vpc.plygenom.id
-  subnet_ids          = aws_subnet.dba_endpoint.*.id
+  subnet_ids          = aws_subnet.plygenom_endpoint.*.id
   service_name        = "com.amazonaws.ap-southeast-2.ecs-agent"
   vpc_endpoint_type   = "Interface"
   security_group_ids  = [aws_security_group.endpoint_access.id]
@@ -53,7 +53,7 @@ resource "aws_vpc_endpoint" "ecs_agent" {
 
 resource "aws_vpc_endpoint" "ecs_telemetry" {
   vpc_id              = aws_vpc.plygenom.id
-  subnet_ids          = aws_subnet.dba_endpoint.*.id
+  subnet_ids          = aws_subnet.plygenom_endpoint.*.id
   service_name        = "com.amazonaws.ap-southeast-2.ecs-telemetry"
   vpc_endpoint_type   = "Interface"
   security_group_ids  = [aws_security_group.endpoint_access.id]
@@ -63,7 +63,7 @@ resource "aws_vpc_endpoint" "ecs_telemetry" {
 
 resource "aws_vpc_endpoint" "ecs" {
   vpc_id              = aws_vpc.plygenom.id
-  subnet_ids          = aws_subnet.dba_endpoint.*.id
+  subnet_ids          = aws_subnet.plygenom_endpoint.*.id
   service_name        = "com.amazonaws.ap-southeast-2.ecs"
   vpc_endpoint_type   = "Interface"
   security_group_ids  = [aws_security_group.endpoint_access.id]
@@ -75,7 +75,7 @@ resource "aws_vpc_endpoint" "ecs" {
 
 resource "aws_vpc_endpoint" "cloudwatch" {
   vpc_id              = aws_vpc.plygenom.id
-  subnet_ids          = aws_subnet.dba_endpoint.*.id
+  subnet_ids          = aws_subnet.plygenom_endpoint.*.id
   service_name        = "com.amazonaws.ap-southeast-2.logs"
   vpc_endpoint_type   = "Interface"
   security_group_ids  = [aws_security_group.endpoint_access.id]
@@ -87,7 +87,7 @@ resource "aws_vpc_endpoint" "cloudwatch" {
 
 resource "aws_vpc_endpoint" "elasticbeanstalk" {
   vpc_id                          = aws_vpc.plygenom.id
-  subnet_ids                      = aws_subnet.dba_endpoint.*.id
+  subnet_ids                      = aws_subnet.plygenom_endpoint.*.id
   service_name                    = "com.amazonaws.ap-southeast-2.elasticbeanstalk"
   vpc_endpoint_type               = "Interface"
   security_group_ids              = [aws_security_group.endpoint_access.id]
@@ -97,7 +97,7 @@ resource "aws_vpc_endpoint" "elasticbeanstalk" {
 
 resource "aws_vpc_endpoint" "elasticbeanstalk-health" {
   vpc_id                          = aws_vpc.plygenom.id
-  subnet_ids                      = aws_subnet.dba_endpoint.*.id
+  subnet_ids                      = aws_subnet.plygenom_endpoint.*.id
   service_name                    = "com.amazonaws.ap-southeast-2.elasticbeanstalk-health"
   vpc_endpoint_type               = "Interface"
   security_group_ids              = [aws_security_group.endpoint_access.id]
